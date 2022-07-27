@@ -6,7 +6,7 @@ host:"192.168.1.250",
 user: "diva",
 password: "diva",
 port :3308,
-database:"djo"
+database:"knitwear"
 
 
 })

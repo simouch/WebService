@@ -1,5 +1,5 @@
 const OF = require("../models/OFM")
-
+const article=require("../models/AricleM")
 
 exports.getOF=(req,res)=>{
 
@@ -15,15 +15,18 @@ OF.getALL()
 exports.post = (req, res) => {
     const IDOFabrication =req.body.IDOFabrication;
     const OFAbrication=req.body.OFAbrication;
+    const IDArticle =req.body.IDArticle;
+    const IDAr_Couleur=req.body.IDAr_Couleur;
     const  OFab = new OF (
-        IDOFabrication,
-        OFAbrication
+      IDOFabrication,
+        OFAbrication,
+        IDArticle,
+        IDAr_Couleur
       );
   
       OFab.save()
-
- 
-      .then(() => {
+      
+        .then(() => {
         res.json({state: 'ok', msg: 'of ajouté'})
        
         console.log("of ajouté",OFab)
@@ -63,4 +66,56 @@ exports.delete =(req,res)=>{
     }).catch((err) => {
         console.log(err);
     });
-}
+};
+// exports.getArticles = (req, res, next) => {
+//     article.fetchAll()
+//       .then(([rows, fieldData]) => {
+//         res.json({state: 'ok', msg: 'of ',data:rows})
+//       })
+//       .catch(err => console.log(err));
+//   };
+//   exports.getArticle = (req, res, next) => {
+//     const ArticleID = req.params.ArticleID;
+//     article.findById(ArticleID)
+//       .then(([product]) => {
+//         res.json(product)
+//         console.log(product);
+//       })
+//       .catch(err => console.log(err));
+//   };
+//   exports.getOF = (req, res, next) => {
+//     OF.getOF(of => {
+//       aricle.fetchAll(aricle => {
+//         const ofArticle = [];
+//         for (article of articles) {
+//           const cartProductData = of.article.find(
+//             prod => prod.id === article.id
+//           );
+//           if (cartProductData) {
+//             ofArticle.push({ productData: product, qty: cartProductData.qty });
+//           }
+//         }
+//         res.json(ofArticle)
+//       ;
+//       });
+//     });
+//   };
+//   exports.postCart = (req, res, next) => {
+//     const prodId = req.body.productId;
+//     Product.findById(prodId, product => {
+//       Cart.addProduct(prodId, product.price);
+//     });
+//     res.redirect('/cart');
+//   };
+  
+//   exports.postCartDeleteProduct = (req, res, next) => {
+//     const prodId = req.body.productId;
+//     Product.findById(prodId, product => {
+//       Cart.deleteProduct(prodId, product.price);
+//       res.redirect('/cart');
+//     });
+//   };
+  
+ 
+  
+ 
